@@ -21,14 +21,10 @@
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        .img-container img { opacity: 0; transition: opacity 0.5s ease-in-out; }
-        .img-container img.loaded { opacity: 1; }
-
         .banner-hero {
             background: linear-gradient(90deg, rgba(0,46,95,0.95) 0%, rgba(0,46,95,0.8) 50%, rgba(0,46,95,0.4) 100%), 
                         url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
+            background-size: cover; background-position: center;
         }
 
         @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
@@ -44,23 +40,17 @@
                 <img src="logo.png" alt="AFC Digital" class="h-10 object-contain">
                 <span class="font-black text-fv-blue text-xl tracking-tighter uppercase">AFC Digital</span>
             </div>
-            <div class="flex items-center gap-4">
-                <button onclick="toggleCart()" class="relative p-2 hover:bg-gray-100 rounded-full transition">
-                    <i class="fa-solid fa-cart-shopping text-2xl text-fv-blue"></i>
-                    <span id="cart-count" class="absolute top-0 right-0 bg-orange-600 text-white text-[10px] font-bold h-5 w-5 flex items-center justify-center rounded-full border-2 border-white">0</span>
-                </button>
-            </div>
+            <button onclick="toggleCart()" class="relative p-2 hover:bg-gray-100 rounded-full transition">
+                <i class="fa-solid fa-cart-shopping text-2xl text-fv-blue"></i>
+                <span id="cart-count" class="absolute top-0 right-0 bg-orange-600 text-white text-[10px] font-bold h-5 w-5 flex items-center justify-center rounded-full border-2 border-white">0</span>
+            </button>
         </header>
 
         <section class="banner-hero p-8 md:p-20 flex items-center min-h-[350px] relative">
-            <div class="relative z-10 max-w-3xl">
-                <span class="bg-fv-orange text-white px-3 py-1 font-bold text-xs uppercase tracking-widest mb-4 inline-block">Impulsa tu futuro</span>
-                <h1 class="text-white text-5xl md:text-7xl font-extrabold leading-none mb-4 uppercase italic">
-                    Tu Academia <br><span class="text-fv-orange not-italic">Digital</span>
-                </h1>
-                <p class="text-blue-50 text-lg md:text-xl font-medium max-w-xl">
-                    Conocimiento, Cursos y Herramientas para Emprendedores Digitales.
-                </p>
+            <div class="relative z-10 max-w-3xl text-white">
+                <span class="bg-fv-orange px-3 py-1 font-bold text-xs uppercase tracking-widest mb-4 inline-block">Impulsa tu futuro</span>
+                <h1 class="text-5xl md:text-7xl font-extrabold leading-none mb-4 uppercase italic">Tu Academia <br><span class="text-fv-orange not-italic">Digital</span></h1>
+                <p class="text-blue-50 text-lg md:text-xl font-medium max-w-xl">Conocimiento, Cursos y Herramientas para Emprendedores Digitales.</p>
             </div>
         </section>
 
@@ -69,62 +59,52 @@
                 <nav id="category-nav" class="flex gap-2 overflow-x-auto w-full md:w-auto hide-scrollbar pb-1"></nav>
                 <div class="relative w-full md:w-96">
                     <i class="fa-solid fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                    <input type="text" id="search-input" oninput="applyFilters()" placeholder="¿Qué quieres aprender hoy?" class="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-fv-blue/10 transition">
+                    <input type="text" id="search-input" oninput="applyFilters()" placeholder="¿Qué quieres aprender?" class="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-fv-blue/10">
                 </div>
             </div>
         </div>
 
         <main class="p-6 md:p-10 flex-grow bg-gray-50/30">
-            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="col-span-full text-center py-20 text-gray-400">
-                    <i class="fa-solid fa-circle-notch fa-spin text-4xl mb-4 text-fv-blue"></i>
-                    <p class="font-bold uppercase tracking-widest">Cargando Academia...</p>
-                </div>
-            </div>
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
         </main>
 
-        <footer class="bg-fv-blue text-white py-14 px-6 border-t-4 border-fv-orange">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-3xl font-black mb-2 tracking-tighter">AFC DIGITAL</h2>
-                <div class="w-16 h-1 bg-fv-orange mx-auto mb-8"></div>
-                <p class="text-blue-100 text-sm md:text-base font-medium mb-2 uppercase tracking-widest">Educación · Transformación · Innovación</p>
-                <p class="text-blue-200/50 text-xs mb-8 italic">© 2026 AFC Digital. Todos los derechos reservados.</p>
-            </div>
+        <footer class="bg-fv-blue text-white py-14 px-6 border-t-4 border-fv-orange mt-auto text-center">
+            <h2 class="text-3xl font-black mb-2 tracking-tighter">AFC DIGITAL</h2>
+            <p class="text-blue-100 text-sm uppercase tracking-widest mb-8">Educación · Transformación · Innovación</p>
+            <p class="text-blue-200/50 text-xs italic">© 2026 AFC Digital. Todos los derechos reservados.</p>
         </footer>
     </div>
 
     <div id="product-modal" class="hidden fixed inset-0 bg-fv-blue/95 z-[100] flex items-center justify-center p-4 backdrop-blur-md">
-        <div class="bg-white w-full max-w-xl rounded-3xl overflow-hidden relative shadow-2xl">
-            <button onclick="closeModal()" class="absolute top-4 right-4 w-10 h-10 bg-black/5 hover:bg-black/10 rounded-full flex items-center justify-center transition text-gray-500"><i class="fa-solid fa-times text-xl"></i></button>
-            <div class="h-64 bg-gray-100 overflow-hidden">
-                <img id="modal-img" src="" class="w-full h-full object-cover">
-            </div>
+        <div class="bg-white w-full max-w-xl rounded-3xl overflow-hidden relative shadow-2xl animate-slide-up">
+            <button onclick="closeModal()" class="absolute top-4 right-4 w-10 h-10 bg-black/5 hover:bg-black/10 rounded-full flex items-center justify-center z-10 transition text-gray-500"><i class="fa-solid fa-times text-xl"></i></button>
+            <img id="modal-img" src="" class="w-full h-64 object-cover">
             <div class="p-8">
                 <span id="modal-type" class="text-fv-orange font-bold text-xs uppercase tracking-widest">Digital</span>
-                <h2 id="modal-title" class="text-2xl font-extrabold text-fv-blue mt-2 mb-4 leading-tight">Título</h2>
+                <h2 id="modal-title" class="text-2xl font-extrabold text-fv-blue mt-2 mb-4 leading-tight"></h2>
                 
                 <div class="flex items-center justify-between mb-8 bg-gray-50 p-5 rounded-2xl border border-gray-100">
                     <span class="text-gray-500 font-bold">Inversión:</span>
                     <span id="modal-price" class="text-3xl font-black text-fv-blue"></span>
                 </div>
 
-                <div class="grid grid-cols-6 gap-3">
-                    <button onclick="shareOnWhatsApp()" class="col-span-1 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center hover:bg-green-200 transition h-14" title="Compartir con un amigo">
-                        <i class="fa-brands fa-whatsapp text-2xl"></i>
-                    </button>
-                    <a id="modal-link" href="#" target="_blank" class="col-span-2 bg-gray-100 text-gray-700 rounded-2xl font-bold flex items-center justify-center hover:bg-gray-200 transition h-14 text-sm">
-                        Info Detallada
-                    </a>
-                    <button onclick="addToCartFromModal()" class="col-span-3 bg-fv-blue text-white rounded-2xl font-bold text-lg hover:bg-opacity-90 transition shadow-lg flex items-center justify-center gap-2 h-14">
-                        Añadir <i class="fa-solid fa-cart-plus"></i>
-                    </button>
+                <div class="flex flex-col gap-3">
+                    <div class="grid grid-cols-2 gap-3">
+                        <button onclick="shareSingleProduct()" class="bg-green-500 text-white rounded-2xl py-4 font-bold flex items-center justify-center gap-2 hover:bg-green-600 transition shadow-md">
+                            <i class="fa-brands fa-whatsapp text-xl"></i> Compartir
+                        </button>
+                        <button onclick="addToCartFromModal()" class="bg-fv-blue text-white rounded-2xl py-4 font-bold flex items-center justify-center gap-2 hover:opacity-90 transition shadow-md">
+                            <i class="fa-solid fa-cart-plus"></i> Añadir
+                        </button>
+                    </div>
+                    <a id="modal-link" href="#" target="_blank" class="w-full bg-gray-100 text-gray-700 py-3 rounded-xl text-center font-bold text-sm hover:bg-gray-200 transition">Ver Página de Detalles</a>
                 </div>
             </div>
         </div>
     </div>
 
     <div id="cart-modal" class="hidden fixed inset-0 bg-black/60 z-[200] flex justify-end">
-        <div class="bg-white w-full max-w-md h-full shadow-2xl flex flex-col animate-slide-up md:animate-none">
+        <div class="bg-white w-full max-w-md h-full shadow-2xl flex flex-col">
             <div class="p-6 border-b flex justify-between items-center">
                 <h2 class="text-2xl font-black text-fv-blue">Tu Selección</h2>
                 <button onclick="toggleCart()" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
@@ -135,15 +115,11 @@
                     <span class="font-bold text-gray-500">Subtotal:</span>
                     <span id="cart-total" class="text-3xl font-black text-fv-blue">$0</span>
                 </div>
-                <button onclick="sendOrderWhatsApp()" class="w-full bg-[#25D366] text-white py-4 rounded-2xl font-black text-lg flex items-center justify-center gap-3 shadow-lg">
+                <button onclick="sendOrderWhatsApp()" class="w-full bg-[#25D366] text-white py-4 rounded-2xl font-black text-lg flex items-center justify-center gap-3 shadow-lg hover:bg-[#128C7E] transition">
                     <i class="fa-brands fa-whatsapp text-2xl"></i> Solicitar Acceso
                 </button>
             </div>
         </div>
-    </div>
-
-    <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-fv-blue text-white px-6 py-3 rounded-full shadow-2xl z-[300] transition-opacity opacity-0 pointer-events-none font-bold">
-        Agregado correctamente 🚀
     </div>
 
     <script>
@@ -169,12 +145,13 @@
                         sku: row.SKU,
                         nombre: row.NOMBRE,
                         precio: parseFloat(row['PRECIO DE VENTA']?.replace(/[^0-9.]/g, '')) || 0,
-                        img: row.IMAGEN?.trim() || 'https://via.placeholder.com/600x400/002e5f/ffffff?text=AFC+Digital',
+                        img: row.IMAGEN?.trim() || 'https://via.placeholder.com/600x400',
                         tipo: row.TIPO || 'Curso',
                         link: row['LANDING PAGE'] || '#'
                     }));
                     updateCategoryNav();
                     applyFilters();
+                    checkUrlForProduct(); // Lógica de Link Único al cargar
                 }
             });
         }
@@ -182,15 +159,11 @@
         function updateCategoryNav() {
             const types = ['Ver Todo', ...new Set(allProducts.map(p => p.tipo))].sort();
             document.getElementById('category-nav').innerHTML = types.map(t => `
-                <button onclick="filterType('${t}')" class="px-5 py-2 rounded-xl text-sm font-bold whitespace-nowrap transition-all ${t === currentCategory ? 'bg-fv-blue text-white shadow-md' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}">${t}</button>
+                <button onclick="filterType('${t}')" class="px-5 py-2 rounded-xl text-sm font-bold whitespace-nowrap border transition-all ${t === currentCategory ? 'bg-fv-blue text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}">${t}</button>
             `).join('');
         }
 
-        function filterType(t) {
-            currentCategory = t;
-            updateCategoryNav();
-            applyFilters();
-        }
+        function filterType(t) { currentCategory = t; updateCategoryNav(); applyFilters(); }
 
         function applyFilters() {
             const search = document.getElementById('search-input').value.toLowerCase();
@@ -204,22 +177,23 @@
 
         function renderGrid(products) {
             const grid = document.getElementById('product-grid');
-            if(products.length === 0) {
-                grid.innerHTML = '<div class="col-span-full text-center py-20 text-gray-400 font-bold">No se encontraron resultados.</div>';
-                return;
-            }
             grid.innerHTML = products.map(p => `
-                <div class="bg-white rounded-3xl overflow-hidden card-shadow flex flex-col cursor-pointer" onclick="openModal('${p.sku}')">
-                    <div class="relative h-56 bg-gray-100 img-container">
-                        <img src="${p.img}" class="w-full h-full object-cover" onload="this.classList.add('loaded')">
-                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-lg text-[10px] font-black uppercase text-fv-blue shadow-sm border border-gray-100">${p.tipo}</div>
+                <div class="bg-white rounded-3xl overflow-hidden card-shadow flex flex-col cursor-pointer relative group">
+                    <div onclick="openModal('${p.sku}')" class="h-56 overflow-hidden">
+                        <img src="${p.img}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-lg text-[10px] font-black uppercase text-fv-blue shadow-sm">${p.tipo}</div>
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="font-extrabold text-lg text-gray-900 leading-tight mb-4 h-12 line-clamp-2">${p.nombre}</h3>
-                        <div class="mt-auto flex justify-between items-center pt-5 border-t border-gray-100">
+                        <h3 onclick="openModal('${p.sku}')" class="font-extrabold text-lg text-gray-900 leading-tight mb-4 h-12 line-clamp-2">${p.nombre}</h3>
+                        <div class="mt-auto pt-5 border-t border-gray-100 flex justify-between items-center">
                             <p class="text-xl font-black text-fv-blue">${formatMoney(p.precio)}</p>
-                            <div class="w-11 h-11 bg-gray-900 text-white rounded-2xl flex items-center justify-center hover:bg-fv-orange transition-colors">
-                                <i class="fa-solid fa-plus"></i>
+                            <div class="flex gap-2">
+                                <button onclick="quickShare('${p.sku}')" class="w-10 h-10 bg-green-50 text-green-600 rounded-xl flex items-center justify-center hover:bg-green-100 transition shadow-sm" title="Compartir">
+                                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                                </button>
+                                <button onclick="quickAdd('${p.sku}')" class="w-10 h-10 bg-gray-900 text-white rounded-xl flex items-center justify-center hover:bg-fv-blue transition shadow-md" title="Añadir al carrito">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -229,72 +203,82 @@
 
         function openModal(sku) {
             selectedProduct = allProducts.find(p => p.sku === sku);
+            if(!selectedProduct) return;
+
             document.getElementById('modal-title').innerText = selectedProduct.nombre;
             document.getElementById('modal-type').innerText = selectedProduct.tipo;
             document.getElementById('modal-price').innerText = formatMoney(selectedProduct.precio);
             document.getElementById('modal-img').src = selectedProduct.img;
             document.getElementById('modal-link').href = selectedProduct.link;
+            
+            // Actualizar URL del navegador para el link único
+            window.history.pushState({}, '', `?p=${sku}`);
             document.getElementById('product-modal').classList.remove('hidden');
         }
 
-        function closeModal() { document.getElementById('product-modal').classList.add('hidden'); }
+        function closeModal() {
+            document.getElementById('product-modal').classList.add('hidden');
+            window.history.pushState({}, '', window.location.pathname); // Limpiar URL
+        }
+
+        function quickAdd(sku) {
+            const p = allProducts.find(prod => prod.sku === sku);
+            if(!cart.find(c => c.sku === sku)) cart.push(p);
+            updateCartUI();
+        }
 
         function addToCartFromModal() {
-            if(!selectedProduct) return;
-            const exists = cart.find(c => c.sku === selectedProduct.sku);
-            if(!exists) cart.push({...selectedProduct});
-            updateCartUI();
-            showToast();
+            quickAdd(selectedProduct.sku);
             closeModal();
+        }
+
+        function quickShare(sku) {
+            const p = allProducts.find(prod => prod.sku === sku);
+            const url = `${window.location.origin}${window.location.pathname}?p=${sku}`;
+            const text = `🚀 ¡Mira este curso en AFC Digital!\n\n*${p.nombre}*\n\nInfo aquí: ${url}`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        function shareSingleProduct() {
+            quickShare(selectedProduct.sku);
+        }
+
+        function checkUrlForProduct() {
+            const params = new URLSearchParams(window.location.search);
+            const pSku = params.get('p');
+            if(pSku) setTimeout(() => openModal(pSku), 500);
         }
 
         function updateCartUI() {
             document.getElementById('cart-count').innerText = cart.length;
             const container = document.getElementById('cart-items');
             let total = 0;
-            
-            if(cart.length === 0) {
-                container.innerHTML = '<div class="text-center py-10 text-gray-400 font-bold italic">Carrito vacío</div>';
-            } else {
-                container.innerHTML = cart.map((item, i) => {
-                    total += item.precio;
-                    return `
-                        <div class="flex gap-4 bg-white p-3 rounded-2xl border border-gray-100 shadow-sm">
-                            <img src="${item.img}" class="w-16 h-16 object-cover rounded-xl bg-gray-50">
-                            <div class="flex-grow">
-                                <p class="font-bold text-xs text-fv-blue line-clamp-1">${item.nombre}</p>
-                                <p class="font-black text-sm mt-1">${formatMoney(item.precio)}</p>
-                            </div>
-                            <button onclick="removeFromCart(${i})" class="text-red-400 hover:text-red-600 px-2"><i class="fa-solid fa-trash-can"></i></button>
+            container.innerHTML = cart.map((item, i) => {
+                total += item.precio;
+                return `
+                    <div class="flex gap-4 bg-white p-3 rounded-2xl border border-gray-100 shadow-sm">
+                        <img src="${item.img}" class="w-16 h-16 object-cover rounded-xl bg-gray-50">
+                        <div class="flex-grow">
+                            <p class="font-bold text-xs text-fv-blue line-clamp-1">${item.nombre}</p>
+                            <p class="font-black text-sm mt-1">${formatMoney(item.precio)}</p>
                         </div>
-                    `;
-                }).join('');
-            }
+                        <button onclick="removeFromCart(${i})" class="text-red-400 hover:text-red-600 px-2"><i class="fa-solid fa-trash-can"></i></button>
+                    </div>
+                `;
+            }).join('');
             document.getElementById('cart-total').innerText = formatMoney(total);
         }
 
         function removeFromCart(i) { cart.splice(i, 1); updateCartUI(); }
         function toggleCart() { document.getElementById('cart-modal').classList.toggle('hidden'); }
 
-        function shareOnWhatsApp() {
-            const text = `🚀 ¡Mira este curso en AFC Digital!\n\n*${selectedProduct.nombre}*\n\nInfo aquí: ${window.location.href}`;
-            window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
-        }
-
         function sendOrderWhatsApp() {
             if(cart.length === 0) return;
-            let msg = `🎓 *INSCRIPCIÓN - AFC DIGITAL*%0A%0A`;
-            msg += `Hola, deseo inscribirme en los siguientes cursos:%0A%0A`;
+            let msg = `🎓 *INSCRIPCIÓN - AFC DIGITAL*%0A%0AHola, deseo inscribirme en los siguientes cursos:%0A%0A`;
             cart.forEach(item => msg += `• *${item.nombre}* (${formatMoney(item.precio)})%0A`);
             const total = cart.reduce((acc, i) => acc + i.precio, 0);
-            msg += `%0A*TOTAL A PAGAR: ${formatMoney(total)}*%0A%0A_Por favor indícame los pasos para el pago._`;
+            msg += `%0A*TOTAL: ${formatMoney(total)}*%0A%0AIndíqueme los pasos de pago.`;
             window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank');
-        }
-
-        function showToast() {
-            const t = document.getElementById('toast');
-            t.classList.replace('opacity-0', 'opacity-100');
-            setTimeout(() => t.classList.replace('opacity-100', 'opacity-0'), 2000);
         }
 
         loadProducts();
