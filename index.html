@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academia AFC - Cursos y Plantillas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+        body { background-color: #FDFDFD; font-family: 'Plus Jakarta Sans', sans-serif; }
+        
+        .text-fv-blue { color: #002e5f; }
+        .bg-fv-blue { background-color: #002e5f; }
+        
+        .card-shadow { transition: all 0.3s ease; border: 1px solid #f0f0f0; }
+        .card-shadow:hover { transform: translateY(-5px); border-color: #002e5f; box-shadow: 0 20px 25px -5px rgba(0, 46, 95, 0.1); }
+        
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Fix para imágenes */
+        .img-container img { opacity: 0; transition: opacity 0.5s ease-in-out; }
+        .img-container img.loaded { opacity: 1; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <div class="max-w-[1200px] mx-auto bg-white min-h-screen flex flex-col shadow-sm w-full">
+        
+        <header class="px-6 py-4 sticky top-0 z-50 bg-white/90 backdrop-blur-md flex justify-between items-center border-b border-gray-100 h-[80px]">
+            <div class="flex items-center gap-3">
+                <img src="logo.png" alt="AFC Digital" class="h-10 object-contain">
+                <span class="font-black text-fv-blue text-xl tracking-tighter">AFC DIGITAL</span>
+            </div>
+            <a href="https://wa.me/573114957971" target="_blank" class="bg-[#25D366] text-white px-5 py-2 rounded-full text-sm font-bold flex items-center gap-2 hover:bg-[#128C7E] transition shadow-md">
+                <i class="fa-brands fa-whatsapp text-lg"></i> Soporte
+            </a>
+        </header>
+
+        <section class="bg-fv-blue p-8 md:p-16 text-center md:text-left relative overflow-hidden">
+            <div class="relative z-10 max-w-2xl text-white">
+                <span class="text-orange-400 font-bold tracking-widest text-xs uppercase">Potencia tus habilidades</span>
+                <h1 class="text-4xl md:text-6xl font-extrabold mt-2 leading-tight">Cursos y Plantillas <br>Digitales</h1>
+                <p class="text-blue-100 mt-4 text-lg">Aprende con Academia AFC. Acceso inmediato y recursos de alta calidad.</p>
+            </div>
+            <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl"></div>
+        </section>
+
+        <div class="p-6 border-b border-gray-100 sticky top-[80px] bg-white z-40">
+            <div class="flex flex-col md:flex-row gap-4 justify-between items-center">
+                <nav id="category-nav" class="flex gap-2 overflow-x-auto w-full md:w-auto hide-scrollbar pb-1"></nav>
+                <div class="relative w-full md:w-80">
+                    <i class="fa-solid fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                    <input type="text" id="search-input" oninput="applyFilters()" placeholder="¿Qué quieres aprender?" class="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-fv-blue/10 transition">
+                </div>
+            </div>
+        </div>
+
+        <main class="p-6 flex-grow bg-gray-50/30">
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="col-span-full text-center py-20 text-gray-400">
+                    <i class="fa-solid fa-circle-notch fa-spin text-4xl mb-4 text-fv-blue"></i>
+                    <p class="font-bold uppercase tracking-widest">Cargando Academia...</p>
+                </div>
+            </div>
+        </main>
+
+        <footer class="bg-fv-blue text-white py-12 px-6 border-t-4 border-orange-500">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-2xl font-black mb-2">AFC DIGITAL</h2>
+                <div class="w-16 h-1 bg-orange-500 mx-auto mb-6"></div>
+                <p class="text-blue-100 text-sm md:text-base font-medium mb-2 uppercase tracking-widest">Educación y Transformación Digital</p>
+                <p class="text-blue-200/60 text-xs mb-8 italic">© 2026 AFC Digital. Todos los derechos reservados.</p>
+                <div class="flex justify-center gap-6">
+                    <a href="https://wa.me/573114957971" target="_blank" class="text-white/70 hover:text-white transition text-2xl"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" class="text-white/70 hover:text-white transition text-2xl"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <div id="product-modal" class="hidden fixed inset-0 bg-fv-blue/95 z-[100] flex items-center justify-center p-4 backdrop-blur-md">
+        <div class="bg-white w-full max-w-xl rounded-3xl overflow-hidden relative shadow-2xl">
+            <button onclick="closeModal()" class="absolute top-4 right-4 w-10 h-10 bg-black/5 hover:bg-black/10 rounded-full flex items-center justify-center transition text-gray-500"><i class="fa-solid fa-times text-xl"></i></button>
+            <div class="h-64 bg-gray-100 flex items-center justify-center overflow-hidden">
+                <img id="modal-img" src="" class="w-full h-full object-cover">
+            </div>
+            <div class="p-8">
+                <span id="modal-type" class="text-orange-500 font-bold text-xs uppercase tracking-widest">TIPO</span>
+                <h2 id="modal-title" class="text-2xl font-extrabold text-fv-blue mt-2 mb-4">Título</h2>
+                <div class="flex items-center justify-between mb-8 bg-gray-50 p-4 rounded-2xl border border-gray-100">
+                    <span class="text-gray-500 font-bold">Inversión:</span>
+                    <span id="modal-price" class="text-3xl font-black text-fv-blue"></span>
+                </div>
+                <a id="modal-link" href="#" target="_blank" class="block w-full bg-fv-blue text-white text-center py-4 rounded-2xl font-bold text-lg hover:bg-opacity-90 transition shadow-lg flex items-center justify-center gap-3">
+                    Obtener Acceso <i class="fa-solid fa-rocket"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const SHEET_ID = '17a0Pxq1EOLRf86yiuM014ZluVqL2Qj1Mt8cKRDenjHc';
+        const GID = '1480131494'; // Asegúrate que este es el GID de Infoproductos
+        const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${GID}`;
+
+        let allProducts = [];
+        let currentCategory = 'Ver Todo';
+
+        function formatMoney(amount) {
+            return amount.toLocaleString('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 });
+        }
+
+        function loadProducts() {
+            Papa.parse(CSV_URL, {
+                download: true,
+                header: true,
+                skipEmptyLines: true,
+                complete: function(results) {
+                    console.log("Datos cargados:", results.data); // Para depuración
+                    allProducts = results.data.filter(row => row.SKU).map(row => ({
+                        sku: row.SKU,
+                        nombre: row.NOMBRE,
+                        precio: parseFloat(row['PRECIO DE VENTA']?.replace(/[^0-9.]/g, '')) || 0,
+                        // Limpieza de espacios en la URL de la imagen
+                        img: row.IMAGEN?.trim() || 'https://via.placeholder.com/600x400/002e5f/ffffff?text=AFC+Digital',
+                        tipo: row.TIPO || 'Curso',
+                        link: row['LANDING PAGE'] || '#'
+                    }));
+                    updateCategoryNav();
+                    applyFilters();
+                }
+            });
+        }
+
+        function updateCategoryNav() {
+            const types = ['Ver Todo', ...new Set(allProducts.map(p => p.tipo))].sort();
+            document.getElementById('category-nav').innerHTML = types.map(t => `
+                <button onclick="filterType('${t}')" class="px-5 py-2 rounded-xl text-sm font-bold whitespace-nowrap transition-all ${t === currentCategory ? 'bg-fv-blue text-white shadow-md' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}">${t}</button>
+            `).join('');
+        }
+
+        function filterType(t) {
+            currentCategory = t;
+            updateCategoryNav();
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const search = document.getElementById('search-input').value.toLowerCase();
+            const filtered = allProducts.filter(p => {
+                const matchType = currentCategory === 'Ver Todo' || p.tipo === currentCategory;
+                const matchSearch = p.nombre.toLowerCase().includes(search);
+                return matchType && matchSearch;
+            });
+            renderGrid(filtered);
+        }
+
+        function renderGrid(products) {
+            const grid = document.getElementById('product-grid');
+            if(products.length === 0) {
+                grid.innerHTML = '<div class="col-span-full text-center py-20 text-gray-400 font-bold">No se encontraron infoproductos.</div>';
+                return;
+            }
+            grid.innerHTML = products.map(p => `
+                <div class="bg-white rounded-3xl overflow-hidden card-shadow flex flex-col cursor-pointer" onclick="openModal('${p.sku}')">
+                    <div class="relative h-52 bg-gray-100 img-container">
+                        <img src="${p.img}" class="w-full h-full object-cover" onload="this.classList.add('loaded')">
+                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-lg text-[10px] font-black uppercase text-fv-blue shadow-sm">${p.tipo}</div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="font-extrabold text-lg text-gray-900 leading-snug mb-4 h-14 line-clamp-2">${p.nombre}</h3>
+                        <div class="mt-auto flex justify-between items-center pt-4 border-t border-gray-50">
+                            <div>
+                                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-tight">Inversión Total</p>
+                                <p class="text-xl font-black text-fv-blue">${formatMoney(p.precio)}</p>
+                            </div>
+                            <div class="w-10 h-10 bg-gray-900 text-white rounded-xl flex items-center justify-center hover:bg-fv-blue transition">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openModal(sku) {
+            const p = allProducts.find(prod => prod.sku === sku);
+            document.getElementById('modal-title').innerText = p.nombre;
+            document.getElementById('modal-type').innerText = p.tipo;
+            document.getElementById('modal-price').innerText = formatMoney(p.precio);
+            document.getElementById('modal-img').src = p.img;
+            document.getElementById('modal-link').href = p.link;
+            document.getElementById('product-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('product-modal').classList.add('hidden');
+        }
+
+        loadProducts();
+    </script>
+</body>
+</html>
