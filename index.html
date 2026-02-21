@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Academia AFC - Cursos y Plantillas</title>
+    
+    <link rel="icon" type="image/png" href="logo.png">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
@@ -26,6 +29,9 @@
                         url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop');
             background-size: cover; background-position: center;
         }
+
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+        .animate-slide-up { animation: slideUp 0.3s ease-out; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -43,20 +49,34 @@
             </button>
         </header>
 
-        <section class="banner-hero p-8 md:p-20 flex items-center min-h-[350px] relative">
-            <div class="relative z-10 max-w-3xl text-white">
+        <section class="banner-hero p-8 md:p-20 flex items-center min-h-[350px] relative text-white">
+            <div class="relative z-10 max-w-3xl">
                 <span class="bg-fv-orange px-3 py-1 font-bold text-xs uppercase tracking-widest mb-4 inline-block">Impulsa tu futuro</span>
                 <h1 class="text-5xl md:text-7xl font-extrabold leading-none mb-4 uppercase italic">Tu Academia <br><span class="text-fv-orange not-italic">Digital</span></h1>
                 <p class="text-blue-50 text-lg md:text-xl font-medium max-w-xl">Conocimiento, Cursos y Herramientas para Emprendedores Digitales.</p>
             </div>
         </section>
 
-        <div class="p-6 border-b border-gray-100 sticky top-[80px] bg-white z-40">
-            <div class="flex flex-col md:flex-row gap-6 justify-between items-center">
+        <div class="p-6 border-b border-gray-100 sticky top-[80px] bg-white z-40 shadow-sm">
+            <div class="flex flex-col md:flex-row gap-4 justify-between items-center">
                 <nav id="category-nav" class="flex gap-2 overflow-x-auto w-full md:w-auto hide-scrollbar pb-1"></nav>
-                <div class="relative w-full md:w-96">
-                    <i class="fa-solid fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                    <input type="text" id="search-input" oninput="applyFilters()" placeholder="¿Qué quieres aprender?" class="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-fv-blue/10 transition">
+                
+                <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto items-center">
+                    <div class="relative w-full sm:w-48">
+                        <select id="sort-select" onchange="applyFilters()" class="w-full pl-3 pr-10 py-3 bg-gray-50 border border-gray-300 rounded-2xl text-xs font-bold text-gray-700 outline-none focus:ring-2 focus:ring-fv-blue/10 appearance-none cursor-pointer uppercase">
+                            <option value="recent">Más Recientes</option>
+                            <option value="asc">Precio: Bajo a Alto</option>
+                            <option value="desc">Precio: Alto a Bajo</option>
+                            <option value="az">Nombre: A - Z</option>
+                            <option value="za">Nombre: Z - A</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-[10px]"></i>
+                    </div>
+
+                    <div class="relative w-full md:w-72">
+                        <i class="fa-solid fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        <input type="text" id="search-input" oninput="applyFilters()" placeholder="¿Qué buscas?" class="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-xs focus:outline-none focus:ring-2 focus:ring-fv-blue/10">
+                    </div>
                 </div>
             </div>
         </div>
@@ -65,38 +85,22 @@
             <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
         </main>
 
-        <footer class="bg-fv-blue text-white py-14 px-6 border-t-4 border-fv-orange mt-auto">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-3xl font-black mb-2 tracking-tighter">AFC DIGITAL</h2>
-                <div class="w-16 h-1 bg-fv-orange mx-auto mb-6"></div>
-                <p class="text-blue-100 text-sm md:text-base font-medium mb-8 uppercase tracking-widest italic">Educación · Transformación · Innovación</p>
-                
-                <div class="flex justify-center gap-6 mb-10">
-                    <a href="https://wa.me/573114957971" target="_blank" class="w-12 h-12 bg-green-500 rounded-2xl flex items-center justify-center hover:scale-110 transition shadow-lg shadow-green-900/20" title="WhatsApp Soporte">
-                        <i class="fa-brands fa-whatsapp text-2xl"></i>
-                    </a>
-                    <a href="#" class="w-12 h-12 bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 rounded-2xl flex items-center justify-center hover:scale-110 transition shadow-lg shadow-purple-900/20" title="Instagram">
-                        <i class="fa-brands fa-instagram text-2xl"></i>
-                    </a>
-                    <a href="#" class="w-12 h-12 bg-[#1877F2] rounded-2xl flex items-center justify-center hover:scale-110 transition shadow-lg shadow-blue-900/20" title="Facebook">
-                        <i class="fa-brands fa-facebook-f text-2xl"></i>
-                    </a>
-                    <a href="https://github.com/academia-afc" target="_blank" class="w-12 h-12 bg-gray-800 rounded-2xl flex items-center justify-center hover:scale-110 transition shadow-lg shadow-black/20" title="GitHub">
-                        <i class="fa-brands fa-github text-2xl"></i>
-                    </a>
-                </div>
-
-                <p class="text-blue-200/50 text-xs italic">© 2026 AFC Digital. Todos los derechos reservados.</p>
+        <footer class="bg-fv-blue text-white py-14 px-6 border-t-4 border-fv-orange mt-auto text-center">
+            <h2 class="text-3xl font-black mb-2 tracking-tighter uppercase">AFC DIGITAL</h2>
+            <div class="flex justify-center gap-6 mb-8">
+                <a href="https://wa.me/573114957971" target="_blank" class="w-12 h-12 bg-green-500 rounded-2xl flex items-center justify-center hover:scale-110 transition shadow-lg"><i class="fa-brands fa-whatsapp text-2xl"></i></a>
             </div>
+            <p class="text-blue-100 text-sm uppercase tracking-widest mb-4">Educación · Transformación · Innovación</p>
+            <p class="text-blue-200/50 text-xs italic">© 2026 AFC Digital. Todos los derechos reservados.</p>
         </footer>
     </div>
 
     <div id="product-modal" class="hidden fixed inset-0 bg-fv-blue/95 z-[100] flex items-center justify-center p-4 backdrop-blur-md">
         <div class="bg-white w-full max-w-xl rounded-3xl overflow-hidden relative shadow-2xl animate-slide-up">
-            <button onclick="closeModal()" class="absolute top-4 right-4 w-10 h-10 bg-black/5 hover:bg-black/10 rounded-full flex items-center justify-center z-10 transition text-gray-500"><i class="fa-solid fa-times text-xl"></i></button>
+            <button onclick="closeModal()" class="absolute top-4 right-4 w-10 h-10 bg-black/5 hover:bg-black/10 rounded-full flex items-center justify-center transition text-gray-500"><i class="fa-solid fa-times text-xl"></i></button>
             <img id="modal-img" src="" class="w-full h-64 object-cover">
             <div class="p-8">
-                <span id="modal-type" class="text-fv-orange font-bold text-xs uppercase tracking-widest">Digital</span>
+                <span id="modal-type" class="text-fv-orange font-bold text-xs uppercase tracking-widest"></span>
                 <h2 id="modal-title" class="text-2xl font-extrabold text-fv-blue mt-2 mb-4 leading-tight"></h2>
                 
                 <div class="flex items-center justify-between mb-8 bg-gray-50 p-5 rounded-2xl border border-gray-100">
@@ -104,34 +108,32 @@
                     <span id="modal-price" class="text-3xl font-black text-fv-blue"></span>
                 </div>
 
-                <div class="flex flex-col gap-3">
-                    <div class="grid grid-cols-2 gap-3">
-                        <button onclick="shareSingleProduct()" class="bg-green-500 text-white rounded-2xl py-4 font-bold flex items-center justify-center gap-2 hover:bg-green-600 transition">
-                            <i class="fa-brands fa-whatsapp text-xl"></i> Compartir
-                        </button>
-                        <button onclick="addToCartFromModal()" class="bg-fv-blue text-white rounded-2xl py-4 font-bold flex items-center justify-center gap-2 hover:opacity-90 transition">
-                            <i class="fa-solid fa-cart-plus"></i> Añadir
-                        </button>
-                    </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <button onclick="shareSingleProduct()" class="bg-green-500 text-white rounded-2xl py-4 font-bold flex items-center justify-center gap-2 hover:bg-green-600 transition shadow-md">
+                        <i class="fa-brands fa-whatsapp text-xl"></i> Compartir
+                    </button>
+                    <button onclick="addToCartFromModal()" class="bg-fv-blue text-white rounded-2xl py-4 font-bold flex items-center justify-center gap-2 hover:opacity-90 transition shadow-md">
+                        <i class="fa-solid fa-cart-plus"></i> Añadir
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
     <div id="cart-modal" class="hidden fixed inset-0 bg-black/60 z-[200] flex justify-end">
-        <div class="bg-white w-full max-w-md h-full shadow-2xl flex flex-col">
+        <div class="bg-white w-full max-w-md h-full flex flex-col">
             <div class="p-6 border-b flex justify-between items-center">
-                <h2 class="text-2xl font-black text-fv-blue">Tu Selección</h2>
+                <h2 class="text-2xl font-black text-fv-blue uppercase">Tu Selección</h2>
                 <button onclick="toggleCart()" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
             </div>
             <div id="cart-items" class="flex-grow overflow-y-auto p-6 space-y-4 bg-gray-50"></div>
             <div class="p-6 border-t bg-white">
                 <div class="flex justify-between items-center mb-6">
-                    <span class="font-bold text-gray-500">Subtotal:</span>
+                    <span class="font-bold text-gray-500 uppercase text-xs">Subtotal:</span>
                     <span id="cart-total" class="text-3xl font-black text-fv-blue">$0</span>
                 </div>
                 <button onclick="sendOrderWhatsApp()" class="w-full bg-[#25D366] text-white py-4 rounded-2xl font-black text-lg flex items-center justify-center gap-3 shadow-lg">
-                    <i class="fa-brands fa-whatsapp text-2xl"></i> Solicitar Acceso
+                    <i class="fa-brands fa-whatsapp text-2xl"></i> Confirmar Inscripción
                 </button>
             </div>
         </div>
@@ -156,17 +158,17 @@
             Papa.parse(CSV_URL, {
                 download: true, header: true, skipEmptyLines: true,
                 complete: function(results) {
-                    allProducts = results.data.filter(row => row.SKU).map(row => ({
+                    allProducts = results.data.filter(row => row.SKU).map((row, index) => ({
                         sku: row.SKU,
                         nombre: row.NOMBRE,
                         precio: parseFloat(row['PRECIO DE VENTA']?.replace(/[^0-9.]/g, '')) || 0,
                         img: row.IMAGEN?.trim() || 'https://via.placeholder.com/600x400',
                         tipo: row.TIPO || 'Curso',
-                        link: row['LANDING PAGE'] || '#'
+                        index: index // Para orden reciente
                     }));
                     updateCategoryNav();
                     applyFilters();
-                    checkUrlForProduct();
+                    checkUrlForProduct(); 
                 }
             });
         }
@@ -174,7 +176,7 @@
         function updateCategoryNav() {
             const types = ['Ver Todo', ...new Set(allProducts.map(p => p.tipo))].sort();
             document.getElementById('category-nav').innerHTML = types.map(t => `
-                <button onclick="filterType('${t}')" class="px-5 py-2 rounded-xl text-sm font-bold whitespace-nowrap border transition-all ${t === currentCategory ? 'bg-fv-blue text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}">${t}</button>
+                <button onclick="filterType('${t}')" class="px-5 py-2 rounded-xl text-sm font-bold whitespace-nowrap border transition-all ${t === currentCategory ? 'bg-fv-blue text-white shadow-md' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}">${t}</button>
             `).join('');
         }
 
@@ -182,11 +184,20 @@
 
         function applyFilters() {
             const search = document.getElementById('search-input').value.toLowerCase();
-            const filtered = allProducts.filter(p => {
+            const sortMode = document.getElementById('sort-select').value;
+
+            let filtered = allProducts.filter(p => {
                 const matchType = currentCategory === 'Ver Todo' || p.tipo === currentCategory;
                 const matchSearch = p.nombre.toLowerCase().includes(search);
                 return matchType && matchSearch;
             });
+
+            if (sortMode === 'asc') filtered.sort((a, b) => a.precio - b.precio);
+            else if (sortMode === 'desc') filtered.sort((a, b) => b.precio - a.precio);
+            else if (sortMode === 'az') filtered.sort((a, b) => a.nombre.localeCompare(b.nombre));
+            else if (sortMode === 'za') filtered.sort((a, b) => b.nombre.localeCompare(a.nombre));
+            else if (sortMode === 'recent') filtered.sort((a, b) => b.index - a.index);
+
             renderGrid(filtered);
         }
 
@@ -200,20 +211,15 @@
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
                         <h3 onclick="openModal('${p.sku}')" class="font-extrabold text-lg text-gray-900 leading-tight mb-4 h-12 line-clamp-2">${p.nombre}</h3>
-                        <div class="mt-auto pt-5 border-t border-gray-100 flex justify-between items-center">
+                        <div class="mt-auto flex justify-between items-center pt-5 border-t border-gray-100">
                             <p class="text-xl font-black text-fv-blue">${formatMoney(p.precio)}</p>
                             <div class="flex gap-2">
-                                <button onclick="quickShare('${p.sku}')" class="w-10 h-10 bg-green-50 text-green-600 rounded-xl flex items-center justify-center hover:bg-green-100 transition" title="Compartir">
-                                    <i class="fa-brands fa-whatsapp text-lg"></i>
-                                </button>
-                                <button onclick="quickAdd('${p.sku}')" class="w-10 h-10 bg-gray-900 text-white rounded-xl flex items-center justify-center hover:bg-fv-blue transition" title="Añadir">
-                                    <i class="fa-solid fa-plus"></i>
-                                </button>
+                                <button onclick="quickShare('${p.sku}')" class="w-10 h-10 bg-green-50 text-green-600 rounded-xl flex items-center justify-center hover:bg-green-100 transition shadow-sm"><i class="fa-brands fa-whatsapp text-lg"></i></button>
+                                <button onclick="quickAdd('${p.sku}')" class="w-10 h-10 bg-gray-900 text-white rounded-xl flex items-center justify-center hover:bg-fv-blue transition shadow-md"><i class="fa-solid fa-plus text-lg"></i></button>
                             </div>
                         </div>
                     </div>
-                </div>
-            `).join('');
+                </div>`).join('');
         }
 
         function openModal(sku) {
@@ -262,15 +268,14 @@
             container.innerHTML = cart.map((item, i) => {
                 total += item.precio;
                 return `
-                    <div class="flex gap-4 bg-white p-3 rounded-2xl border border-gray-100">
+                    <div class="flex gap-4 bg-white p-3 rounded-2xl border border-gray-100 shadow-sm">
                         <img src="${item.img}" class="w-16 h-16 object-cover rounded-xl bg-gray-50">
                         <div class="flex-grow">
                             <p class="font-bold text-xs text-fv-blue line-clamp-1">${item.nombre}</p>
                             <p class="font-black text-sm mt-1">${formatMoney(item.precio)}</p>
                         </div>
                         <button onclick="removeFromCart(${i})" class="text-red-400 px-2"><i class="fa-solid fa-trash-can"></i></button>
-                    </div>
-                `;
+                    </div>`;
             }).join('');
             document.getElementById('cart-total').innerText = formatMoney(total);
         }
